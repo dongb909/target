@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Dropdown = () =>{
+const DropdownBox = ({dataList, title}) =>{
  return(
-   <div className="Dropdown">This is the Dropdown
+   <div className="DropdownBox">This is the DropdownBox
      <label htmlFor="cars">Choose a car:</label>
        <select name="cars" id="cars">
          <option value="volvo">Volvo</option>
@@ -14,4 +14,4 @@ const Dropdown = () =>{
  )
 }
 
-export default Dropdown
+export default DropdownBox

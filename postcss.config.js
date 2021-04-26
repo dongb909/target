@@ -1,4 +1,4 @@
-module.exports = { //run our css through tailwind first then autoprefixer
+module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},

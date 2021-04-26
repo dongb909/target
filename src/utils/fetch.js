@@ -1,26 +1,31 @@
-//fetch routes => parse json into form you want which is a list of routes using axios, shape the data comes in aka a module to perform these. All are gets operations.
-//then get the routes using the function you already created
+const axios = require('axios');
 
-class MetroTransit(){ with axios and get 
-  routes // "https://svc.metrotransit.org/nextripv2/routes"
-  directions(routeId) //to directions use "https://svc.metrotransit.org/nextripv2/directions/:routeId"
-  stops(routeId, dirId)// "https://svc.metrotransit.org/nextripv2/stops/20/0"
+class Fetch { //with axios and get 
+  constructor(){
+    this.site = "https://svc.metrotransit.org/nextripv2/"
+  }
+
+  getRoutes(){
+     axios.get(`${this.site}routes`).then(res => res.data).catch(err=> `${err.message} CANNOT GET ROUTES`)
+  }
+
+  getDirections(routeId){
+    axios.get(`${this.site}directions/${routeId}`).then(res=> res.data).catch(err=> console.log(`${err.message} CANNOT GET DIRECTIONS`))
+  }
+
+  getStops(routeId, directionId){
+    axios.get(`${this.site}stops/${routeId}/${directionId}`).then(res=> res.data).catch(err=> `${err.message} CANNOT GET TOPS`)
+  }
+
 }
 
-export this, import into component that needs it
-
-
-//should have routes then once selected: upon page load: "https://svc.metrotransit.org/nextripv2/routes"
-
-//display and get directions then once that's selected
-
-//display stops once stop is selected then display time etc. 
-
+export default new Fetch();
 
 /*******FEATURES*********/
 /* 
 1) display routes dropdown only
 when select, should fetch directions and display directions dropdown
+each function: 1 sentence of what input it takes in and what it returns in what form or what it means. 
 
 2) direction dropdown only displayed when route selected
 once direction selected then display stops content
@@ -29,9 +34,14 @@ once direction selected then display stops content
 
 4) Routing
 
-5) Testing
+5) Testing: if ui works, if display 0 stops, all stops, 
+-unit test: code and functions, undefined, 
+-front-end site test: speed load, 
 
-6) 
+6) README
+goal of app, purpose, how structure like high lever components, what each folder consist of/do, anything about the UI that's usesul like it's modbile first, or any features you want to talk about. goal and purpose is just restating the question /descr of what they gave you. sum it up. how to use it. and what it offers. 
+
+7) prepare how to add in the time and stuff if want to expand the app to include what the site does currently to make it work.
 
 */
 
@@ -40,4 +50,4 @@ once direction selected then display stops content
 //get css in with tailwind for display
 //get 
 
-install and build out some of the ui
+// install and build out some of the ui
