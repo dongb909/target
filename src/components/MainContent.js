@@ -1,43 +1,80 @@
-import React, {useState, useEffect} from 'react';
-// import Fetch from '../utils/fetch.js';
-import RouteOptions from './RouteOptions';
-import DirectionOptions from './DirectionOptions';
-import StopsList from './StopsList';
-const axios = require('axios');
+import React, { useState, useEffect } from "react";
+import RouteOptions from "./RouteOptions";
+import DirectionOptions from "./DirectionOptions";
+import StopsList from "./StopsList";
+// import { useHistory } from "react-router-dom";
+const axios = require("axios");
 
 const MainContent = () => {
-  const [metroRoutes, setRoutes] = useState([])
-  const [directions, setDirections] = useState([])
-  const [stops, setStops] = useState([])
-  const [selectedRoute, setSelectedRoute] = useState("Select a Route")
-  // const [selectedDirection, setSelectedDirection] = useState("")
-  // useEffect(()=>setRoutes(Fetch.getRoutes()),[])
-  useEffect(()=>{axios.get('https://svc.metrotransit.org/nextripv2/routes').then(res => setRoutes(res.data)).catch(err=> `${err.message} CANNOT GET ROUTES`)}, [])
+	const defaultRouteName = "Select a Route";
+	const defaultDirectionName = "Select a Direction";
 
-  const getDirections = (routeId) => {
-     axios.get(`https://svc.metrotransit.org/nextripv2/directions/${routeId}`).then(res=> {console.log(res.data, 'DIRECTIONSSSSSS'); return setDirections(res.data)}).catch(err=> console.log(`${err.message} CANNOT GET DIRECTIONS`))
-  }
+	// const history = useHistory()
+	// console.log('use history', useHistory)
+	// console.log('wghat is history', history);
 
-  // const getStops = (routeId, directionId) => {
-  //   axios.get(`https://svc.metrotransit.org/nextripv2/stops/${routeId}/${directionId}`).then(res=> setStops(res.data)).catch(err=> `${err.message} CANNOT GET TOPS`)
-  // }
+	const [metroRoutes, setRoutes] = useState([]);
+	const [directions, setDirections] = useState([]);
 
-//   const getDirId = (e) => {
-// 
-//     // return e
-//   }
- return(
-   <div className="mainContent">
-     {/* <h1> Main content </h1> */}
-     <form>
-       <RouteOptions metroRoutes={metroRoutes} getDirections={getDirections} setSelectedRoute={setSelectedRoute} selectedRoute={selectedRoute} />
-       {selectedRoute.length > 0 && <DirectionOptions/>}
-     </form>
-     {/* <div>
-      <StopsList/> 
-     </div> */}
-   </div>
- )
-}
+	// component states
+	const [selectedRoute, setSelectedRoute] = useState([defaultRouteName, null]);
+	const [selectedDirection, setSelectedDirection] = useState({
+		direction_name: defaultDirectionName,
+		direction_id: null,
+	});
+
+	// route response from selectedRoute + selectedDirection
+	const [stops, setStops] = useState([]);
+
+	// componentDidMount
+	useEffect(() => {
+		axios
+			.get("https://svc.metrotransit.org/nextripv2/routes")
+			.then((res) => setRoutes(res.data))
+			.catch((err) => `${err.message} CANNOT GET ROUTES`);
+	}, []);
+
+	useEffect(() => {
+		axios
+			.get(
+				`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute[1]}`
+			)
+			.then((response) => {
+				// history.push(selectedRoute[1])
+				setDirections(response.data);
+			})
+			.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
+	}, [selectedRoute]);
+
+	useEffect(() => {
+		axios
+			.get(
+				`https://svc.metrotransit.org/nextripv2/stops/${selectedRoute[1]}/${selectedDirection.direction_id}`
+			)
+			.then((response) => {
+				// const historyPathname = history.location.pathname
+				setStops(response.data);
+			})
+			.catch((err) => `${err.message} CANNOT GET STOPS`);
+	}, [selectedRoute, selectedDirection]);
+
+	return (
+		<div className="mainContent">
+			<RouteOptions
+				metroRoutes={metroRoutes}
+				setSelectedRoute={setSelectedRoute}
+				selectedRoute={selectedRoute}
+			/>
+			{directions.length > 0 && (
+				<DirectionOptions
+					directions={directions}
+					setSelectedDirection={setSelectedDirection}
+					selectedDirection={selectedDirection}
+				/>
+			)}
+			{stops.length > 0 && <StopsList stops={stops} />}
+		</div>
+	);
+};
 
 export default MainContent;
