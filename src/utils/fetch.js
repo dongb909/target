@@ -2,24 +2,28 @@ const axios = require('axios');
 
 class Fetch { //with axios and get 
   constructor(){
-    this.site = "https://svc.metrotransit.org/nextripv2/"
+    this.URL = "https://svc.metrotransit.org/nextripv2/"
   }
 
   getRoutes(){
-     axios.get(`${this.site}routes`).then(res => res.data).catch(err=> `${err.message} CANNOT GET ROUTES`)
+     return axios.get(`${this.URL}routes`).then(res => res.data).catch(err=> `${err.message} CANNOT GET ROUTES`)
   }
 
   getDirections(routeId){
-    axios.get(`${this.site}directions/${routeId}`).then(res=> res.data).catch(err=> console.log(`${err.message} CANNOT GET DIRECTIONS`))
+    axios.get(`${this.URL}directions/${routeId}`).then(res=> res.data).catch(err=> console.log(`${err.message} CANNOT GET DIRECTIONS`))
   }
 
   getStops(routeId, directionId){
-    axios.get(`${this.site}stops/${routeId}/${directionId}`).then(res=> res.data).catch(err=> `${err.message} CANNOT GET TOPS`)
+    axios.get(`${this.URL}stops/${routeId}/${directionId}`).then(res=> res.data).catch(err=> `${err.message} CANNOT GET TOPS`)
   }
 
 }
 
-export default new Fetch();
+console.log(new Fetch().getRoutes())
+const newClass = new Fetch()
+
+export default newClass;
+// module.exports new Fetch();
 
 /*******FEATURES*********/
 /* 

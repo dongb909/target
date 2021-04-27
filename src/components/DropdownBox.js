@@ -1,17 +1,17 @@
 import React from 'react';
 
-const DropdownBox = ({dataList, title}) =>{
+const DropdownBox = ({dataList, getData, dataType, title, selectedItem, setSelected}) =>{
+  const options = dataList.map(data => <option value={data[0]} key={data[1]}>{data[0]}</option>);
+  
  return(
-   <div className="DropdownBox">This is the DropdownBox
-     <label htmlFor="cars">Choose a car:</label>
-       <select name="cars" id="cars">
-         <option value="volvo">Volvo</option>
-         <option value="saab">Saab</option>
-         <option value="mercedes">Mercedes</option>
-         <option value="audi">Audi</option>
+   <div className="">
+       <select name={dataType} value={selectedItem} onChange={(e) =>{getData(e.target.key)
+        setSelected(e.target.value)} }>
+         <option value={`Select a ${title}`}></option>
+         {options}
        </select>
    </div>
  )
 }
 
-export default DropdownBox
+export default DropdownBox;

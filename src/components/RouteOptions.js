@@ -1,17 +1,16 @@
 import React from 'react';
+import DropdownBox from './DropdownBox';
 
-const DropdownBox = ({routesList}) =>{
+const RouteOptions = ({metroRoutes, getDirections, setSelectedRoute, selectedRoute}) =>{
+  const routeNames = metroRoutes.map(({route_label, route_id})=> [route_label, route_id])
+  console.log(metroRoutes)
+ //  const getRouteId =(e) => {
+ //   const selectedId = e.target.val
+ //   getDirections(selectedId)
+ // }
  return(
-   <div className="DropdownBox">This is the DropdownBox
-     <label htmlFor="cars">Choose a car:</label>
-       <select name="cars" id="cars">
-         <option value="volvo">Volvo</option>
-         <option value="saab">Saab</option>
-         <option value="mercedes">Mercedes</option>
-         <option value="audi">Audi</option>
-       </select>
-   </div>
+   <DropdownBox dataList={routeNames} dataType="Routes" title="route" getData={getDirections} setSelected={setSelectedRoute} selectedItem={selectedRoute}/>
  )
 }
 
-export default DropdownBox
+export default RouteOptions;
