@@ -34,17 +34,17 @@ const MainContent = () => {
 			.catch((err) => `${err.message} CANNOT GET ROUTES`);
 	}, []);
 
-	useEffect(() => {
-		axios
-			.get(
-				`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute[1]}`
-			)
-			.then((response) => {
-				// history.push(selectedRoute[1])
-				setDirections(response.data);
-			})
-			.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
-	}, [selectedRoute]);
+	// useEffect(() => {
+	// 	axios
+	// 		.get(
+	// 			`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute[1]}`
+	// 		)
+	// 		.then((response) => {
+	// 			// history.push(selectedRoute[1])
+	// 			setDirections(response.data);
+	// 		})
+	// 		.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
+	// }, [selectedRoute]);
 
 	useEffect(() => {
 		axios
@@ -64,6 +64,7 @@ const MainContent = () => {
 				metroRoutes={metroRoutes}
 				setSelectedRoute={setSelectedRoute}
 				selectedRoute={selectedRoute}
+				setDirections={setDirections}
 			/>
 			{directions.length > 0 && (
 				<DirectionOptions

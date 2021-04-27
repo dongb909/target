@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import Button from "./Button";
+import classNames from "classnames";
 
 const DropdownBox = ({
 	dataList,
-	getData,
-	dataType,
-	title,
 	selectedRoute,
 	setSelectedRoute,
 }) => {

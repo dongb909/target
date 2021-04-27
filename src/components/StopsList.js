@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const StopsList = () =>{
- return(
-   <div className="stopsList">This is the StopsList!!!!
-   
-   
-   
-   
-   </div>
- )
-}
+const StopsList = ({ stops }) => {
+	return (
+		<ul className="stopsList">
+			{stops.map((stop) => (
+				<li>{stop.description}</li>
+			))}
+		</ul>
+	);
+};
 
-export default StopsList
+export default StopsList;
