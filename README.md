@@ -1,5 +1,6 @@
-#Target Case Study
-\*View hosted site at <https://dongb909.github.io/target/>
+# Target Case Study
+
+- View hosted site at <https://dongb909.github.io/target/>
 
 ## Description
 

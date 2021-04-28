@@ -34,19 +34,29 @@ const MainContent = () => {
 			.catch((err) => `${err.message} CANNOT GET ROUTES`);
 	}, []);
 
-	// useEffect(() => {
-	// 	axios
-	// 		.get(
-	// 			`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute[1]}`
-	// 		)
-	// 		.then((response) => {
-	// 			// history.push(selectedRoute[1])
-	// 			setDirections(response.data);
-	// 		})
-	// 		.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
-	// }, [selectedRoute]);
+	let initialRenderDir = true;
 
 	useEffect(() => {
+		if (initialRenderDir) {
+			initialRenderDir = false;
+		} else {
+			axios
+				.get(
+					`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute[1]}`
+				)
+				.then((response) => {
+					// history.push(selectedRoute[1])
+					setDirections(response.data);
+				})
+				.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
+		}
+	}, [selectedRoute]);
+
+	let initialRenderStop = true;
+	useEffect(() => {
+		if (initialRenderStop) {
+			initialRenderStop = false;
+		} else {
 		axios
 			.get(
 				`https://svc.metrotransit.org/nextripv2/stops/${selectedRoute[1]}/${selectedDirection.direction_id}`
@@ -56,7 +66,8 @@ const MainContent = () => {
 				setStops(response.data);
 			})
 			.catch((err) => `${err.message} CANNOT GET STOPS`);
-	}, [selectedRoute, selectedDirection]);
+	}
+}, [selectedRoute, selectedDirection]);
 
 	return (
 		<div className="mainContent">
