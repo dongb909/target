@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from './components/Banner.js';
-// import Footer from './components/Footer.js';
+import Footer from './components/Footer.js';
 import './App.css';
 import MainContent from './components/MainContent';
 
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Banner/>
       <MainContent/>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 }

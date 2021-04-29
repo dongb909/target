@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import classNames from "classnames";
 
 const DropdownBox = ({ dataList, selectedRoute, setSelectedRoute }) => {
-	const options = dataList.map((data) => (
-		<option value={data[0]} key={data[1]}>
-			{data[0]}
-		</option>
-	));
 
 	const [isDisplay, toggleDisplay] = useState(false);
 
@@ -39,7 +33,6 @@ const DropdownBox = ({ dataList, selectedRoute, setSelectedRoute }) => {
 					>
 						<button
 							onClick={(e) => {
-								e && e.preventDefault();
 								toggleHandler();
 								setSelectedRoute(data);
 							}}
