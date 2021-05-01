@@ -1,37 +1,29 @@
-import React, { useState } from "react";
-import Button from "./Button";
-import classNames from "classnames";
+import React from "react";
+import Dropdown from "./Dropdown";
 
 const DirectionOptions = ({
 	setSelectedDirection,
 	directions,
 	selectedDirection,
 }) => {
-	const [isDisplay, toggleDisplay] = useState(false);
-	const toggleDisplayHandler = () => toggleDisplay(!isDisplay);
+	const routesModifiedList = directions.map(
+		({ direction_name, direction_id }) => ({
+			elementName: direction_name,
+			elementID: direction_id,
+			keyID: `${direction_name}-${direction_id}`,
+		})
+	);
+
+	const getStopsData = (elementName, elementID) => {
+		setSelectedDirection({ elementName, elementID });
+	};
 
 	return (
-		<div>
-			<Button onClick={toggleDisplayHandler}>
-				{selectedDirection.direction_name}
-			</Button>
-			{console.log(isDisplay)}
-			<ul style={{ display: !isDisplay ? "none" : "block" }}>
-				{directions.map((direction) => (
-					<li key={direction.direction_id}>
-						<Button
-							onClick={() => {
-								toggleDisplayHandler();
-								setSelectedDirection(direction);
-							}}
-						>
-							{direction.direction_name}
-						</Button>
-					</li>
-				))}
-			</ul>
-		</div>
+		<Dropdown
+			data={routesModifiedList}
+			displayName={selectedDirection.direction_name}
+			onClickCallback={getStopsData}
+		/>
 	);
 };
-
 export default DirectionOptions;

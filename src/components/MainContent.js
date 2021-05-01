@@ -15,18 +15,20 @@ const MainContent = () => {
 
 	const [metroRoutes, setRoutes] = useState([]);
 	const [directions, setDirections] = useState([]);
-
+	// const [isInitialRender, setInitialRender] = useState(false);
 	// component states
-	const [selectedRoute, setSelectedRoute] = useState([defaultRouteName, null]);
+	const [selectedRoute, setSelectedRoute] = useState({
+		elementName: defaultRouteName,
+		elementID: null,
+	});
 	const [selectedDirection, setSelectedDirection] = useState({
-		direction_name: defaultDirectionName,
-		direction_id: null,
+		elementName: defaultDirectionName,
+		elementID: null,
 	});
 
 	// route response from selectedRoute + selectedDirection
 	const [stops, setStops] = useState([]);
 
-	// componentDidMount
 	useEffect(() => {
 		axios
 			.get("https://svc.metrotransit.org/nextripv2/routes")
@@ -34,40 +36,30 @@ const MainContent = () => {
 			.catch((err) => `${err.message} CANNOT GET ROUTES`);
 	}, []);
 
-	// let initialRenderDir = true;
-
 	useEffect(() => {
-		// if (initialRenderDir) {
-		// 	
-		// 	initialRenderDir = false;
-		// } else {
-			axios
-				.get(
-					`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute[1]}`
-				)
-				.then((response) => {
-					// history.push(selectedRoute[1])
-					setDirections(response.data);
-				})
-				.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
-		// }
+		if (!selectedRoute.elementID) return;
+		axios
+			.get(
+				`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute.elementID}`
+			)
+			.then((response) => {
+				// history.push(selectedRoute[1])
+				setDirections(response.data);
+			})
+			.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
 	}, [selectedRoute]);
 
-	// let initialRenderStop = true;
 	useEffect(() => {
-		// if (initialRenderStop) {
-		// 	initialRenderStop = false;
-		// } else {
-			axios
-				.get(
-					`https://svc.metrotransit.org/nextripv2/stops/${selectedRoute[1]}/${selectedDirection.direction_id}`
-				)
-				.then((response) => {
-					// const historyPathname = history.location.pathname
-					setStops(response.data);
-				})
-				.catch((err) => `${err.message} CANNOT GET STOPS`);
-		// }
+		if (!selectedDirection.elementID) return;
+		axios
+			.get(
+				`https://svc.metrotransit.org/nextripv2/stops/${selectedRoute.elementID}/${selectedDirection.elementID}`
+			)
+			.then((response) => {
+				// const historyPathname = history.location.pathname
+				setStops(response.data);
+			})
+			.catch((err) => `${err.message} CANNOT GET STOPS`);
 	}, [selectedRoute, selectedDirection]);
 
 	return (
