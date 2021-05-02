@@ -2,8 +2,8 @@ import React from "react";
 
 const Dropdown = ({ data, displayName, onClickCallback }) => {
 	return (
-		<div class="">
-			<svg
+		<div class="mt-10 mb-10 ">
+			{/* <svg
 				class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 412 232"
@@ -13,9 +13,10 @@ const Dropdown = ({ data, displayName, onClickCallback }) => {
 					fill="#648299"
 					fill-rule="nonzero"
 				/>
-			</svg>
+			</svg> */}
+			{/* <label htmlFor="dropdown" */}
 			<select
-				class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+				class="border border-gray-300 rounded-lg text-gray-600 h-10 w-80 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none overflow-auto "
 				value={displayName}
 				onChange={(e) => {
 
@@ -25,6 +26,7 @@ const Dropdown = ({ data, displayName, onClickCallback }) => {
 			>
 				{data.map((element) => (
 					<option
+					
 						key={element.keyID}
 						value={[element.elementName, element.elementID]}
 					>

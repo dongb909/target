@@ -3,6 +3,13 @@ import RouteOptions from "./RouteOptions";
 import DirectionOptions from "./DirectionOptions";
 import StopsList from "./StopsList";
 // import { useHistory } from "react-router-dom";
+// import {
+// 	BrowserRouter as Router,
+// 	Route,
+// 	Switch,
+// 	useLocation,
+// 	useHistory
+// } from "react-router-dom";
 const axios = require("axios");
 
 const MainContent = () => {
@@ -10,8 +17,6 @@ const MainContent = () => {
 	const defaultDirectionName = "Select a Direction";
 
 	// const history = useHistory()
-	// console.log('use history', useHistory)
-	// console.log('wghat is history', history);
 
 	const [metroRoutes, setRoutes] = useState([]);
 	const [directions, setDirections] = useState([]);
@@ -83,3 +88,11 @@ const MainContent = () => {
 };
 
 export default MainContent;
+
+
+//useHistory object, it's really just a stack => mapping url to a particular view and state.
+//you're pushing a new state and new view. React wraps the history 
+//maps to dom's history.pushState but we're using history.push as what appears to a url that you want to be on.
+//update browswer state when have both router and direction ids, it's up to you. 
+//so push when have both so really 
+//what about wild cards.
