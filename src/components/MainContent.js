@@ -22,6 +22,7 @@ const MainContent = () => {
 	// route response from selectedRoute + selectedDirection
 	const [stops, setStops] = useState([]);
 
+	//get routes upon initial render
 	useEffect(() => {
 		axios
 			.get("https://svc.metrotransit.org/nextripv2/routes")
@@ -29,10 +30,11 @@ const MainContent = () => {
 			.catch((err) => `${err.message} CANNOT GET ROUTES`);
 	}, []);
 
+	//reset directions and stops upon change in selected route
 	useEffect(() => {
 		if (!selectedRoute.elementID) return;
-		setDirections([])
-		setStops([])
+		setDirections([]);
+		setStops([]);
 		axios
 			.get(
 				`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute.elementID}`
@@ -44,6 +46,7 @@ const MainContent = () => {
 			.catch((err) => `${err.message} CANNOT GET DIRECTIONS`);
 	}, [selectedRoute]);
 
+	//get stops upon selected route and direction
 	useEffect(() => {
 		if (!selectedDirection.elementID) return;
 		axios
@@ -79,10 +82,9 @@ const MainContent = () => {
 
 export default MainContent;
 
-
 //useHistory object, it's really just a stack => mapping url to a particular view and state.
-//you're pushing a new state and new view. React wraps the history 
+//you're pushing a new state and new view. React wraps the history
 //maps to dom's history.pushState but we're using history.push as what appears to a url that you want to be on.
-//update browswer state when have both router and direction ids, it's up to you. 
-//so push when have both so really 
+//update browswer state when have both router and direction ids, it's up to you.
+//so push when have both so really
 //what about wild cards.

@@ -3,7 +3,10 @@ import banner from "../targetbanner.jpeg";
 
 const Banner = () => {
 	return (
-		<div class="bg-fixed mb-14" style={{ backgroundImage: `url(${banner})` }}>
+		<div
+			className="bg-fixed mb-14"
+			style={{ backgroundImage: `url(${banner})` }}
+		>
 			<section className="text-red-600 body-font">
 				<div className="container px-5 py-20 mx-auto">
 					<div className="flex flex-col text-center w-full ">
@@ -11,7 +14,8 @@ const Banner = () => {
 							TARGET METRO TRANSIT
 						</h1>
 						<p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-						Travel responsibly. Masks are required on all buses and trains. Capacity is limited to 20 passengers per 40-foot bus.
+							Travel responsibly. Masks are required on all buses and trains.
+							Capacity is limited to 20 passengers per 40-foot bus.
 						</p>
 					</div>
 				</div>

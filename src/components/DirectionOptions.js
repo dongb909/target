@@ -16,10 +16,8 @@ const DirectionOptions = ({
 
 	const getStopsData = (elementName, elementID) => {
 		setSelectedDirection({ elementName, elementID });
-
 		// const defaultData = {elementName: "Select"}
 		// history.push(`/${routeID}/${directionID}`)
-		// if figure out how to map this to axios req when it sees this url
 	};
 
 	return (
