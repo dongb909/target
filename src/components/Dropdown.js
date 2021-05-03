@@ -5,6 +5,7 @@ const Dropdown = ({
 	displayName,
 	onChangeCallback,
 	"data-testid": dataTestId,
+	dropType
 }) => {
 	return (
 		<div class="mt-10 mb-10 ">
@@ -12,13 +13,13 @@ const Dropdown = ({
 			<select
 				data-testid={dataTestId}
 				class="border border-gray-300 rounded-lg text-gray-600 h-10 w-80 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none overflow-auto "
-				value={displayName}
+				// value={displayName}
 				onChange={(e) => {
 					const [elementName, elementID] = e.target.value.split(",");
 					onChangeCallback(elementName, elementID);
 				}}
 			>
-				<option key="defaultName">{displayName}</option>
+				<option >{dropType}</option>
 				{data.map((element) => (
 					<option
 						data-testid={dataTestId + "-option"}

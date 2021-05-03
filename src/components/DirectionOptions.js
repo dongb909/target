@@ -28,6 +28,7 @@ const DirectionOptions = ({
 			displayName={selectedDirection.elementName}
 			onChangeCallback={getStopsData}
 			data-testid="selectDirectionOption"
+			dropType="Select Route"
 		/>
 	);
 };

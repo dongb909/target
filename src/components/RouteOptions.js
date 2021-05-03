@@ -18,7 +18,7 @@ const RouteOptions = ({ metroRoutes, setSelectedRoute, selectedRoute }) => {
 			displayName={selectedRoute.elementName}
 			onChangeCallback={getRouteData}
 			data-testid="selectRouteOption"
-
+			dropType="Select Route"
 		/>
 	);
 };

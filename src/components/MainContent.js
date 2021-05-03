@@ -31,6 +31,8 @@ const MainContent = () => {
 
 	useEffect(() => {
 		if (!selectedRoute.elementID) return;
+		setDirections([])
+		setStops([])
 		axios
 			.get(
 				`https://svc.metrotransit.org/nextripv2/directions/${selectedRoute.elementID}`
