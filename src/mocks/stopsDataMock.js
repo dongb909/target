@@ -1,0 +1,3 @@
+const stopsDataMock = [{"place_code":"7E2E","description":"7th St SE and 2nd Ave SE"},{"place_code":"8EHE","description":"8th St and E Hennepin"},{"place_code":"15UN","description":"University Ave and 15th Ave"},{"place_code":"ONBE","description":"Ontario St and Beacon St"},{"place_code":"WIHA","description":"Willey Hall"},{"place_code":"25RV","description":"Riverside Ave and 25th Ave"},{"place_code":"FRHI","description":"Franklin Ave Station"},{"place_code":"CHFR","description":"Franklin Ave and Chicago Ave"},{"place_code":"NIFR","description":"Franklin Ave and Nicollet Ave"},{"place_code":"FRHE","description":"Hennepin Ave and Franklin Ave"}]
+
+export default stopsDataMock;

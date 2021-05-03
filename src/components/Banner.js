@@ -5,7 +5,7 @@ const Banner = () => {
 	return (
 		<div class="bg-fixed mb-14" style={{ backgroundImage: `url(${banner})` }}>
 			<section className="text-red-600 body-font">
-				<div className="container px-5 py-10 mx-auto">
+				<div className="container px-5 py-20 mx-auto">
 					<div className="flex flex-col text-center w-full ">
 						<h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
 							TARGET METRO TRANSIT

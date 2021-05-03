@@ -2,26 +2,14 @@ import React, { useState, useEffect } from "react";
 import RouteOptions from "./RouteOptions";
 import DirectionOptions from "./DirectionOptions";
 import StopsList from "./StopsList";
-// import { useHistory } from "react-router-dom";
-// import {
-// 	BrowserRouter as Router,
-// 	Route,
-// 	Switch,
-// 	useLocation,
-// 	useHistory
-// } from "react-router-dom";
 const axios = require("axios");
 
 const MainContent = () => {
 	const defaultRouteName = "Select a Route";
 	const defaultDirectionName = "Select a Direction";
 
-	// const history = useHistory()
-
 	const [metroRoutes, setRoutes] = useState([]);
 	const [directions, setDirections] = useState([]);
-	// const [isInitialRender, setInitialRender] = useState(false);
-	// component states
 	const [selectedRoute, setSelectedRoute] = useState({
 		elementName: defaultRouteName,
 		elementID: null,
@@ -65,7 +53,7 @@ const MainContent = () => {
 				setStops(response.data);
 			})
 			.catch((err) => `${err.message} CANNOT GET STOPS`);
-	}, [selectedRoute, selectedDirection]);
+	}, [selectedDirection]);
 
 	return (
 		<div className="mainContent">
