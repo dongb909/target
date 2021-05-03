@@ -14,7 +14,7 @@ const StopsList = ({ stops }) => {
 					</thead>
 					<tbody>
 						{stops.map((stop) => (
-							<tr>
+							<tr key={stop.place_code}>
 								<td className="px-4 py-3 border-b-2 border-gray-300">
 									{stop.description}
 								</td>
